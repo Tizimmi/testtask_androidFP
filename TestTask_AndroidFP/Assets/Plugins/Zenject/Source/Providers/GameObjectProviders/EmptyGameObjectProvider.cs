@@ -1,0 +1,46 @@
+#if !NOT_UNITY3D
+
+using ModestTree;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Zenject
+{
+	[NoReflectionBaking]
+	public class EmptyGameObjectProvider : IProvider
+	{
+		public bool IsCached => false;
+
+		public bool TypeVariesBasedOnMemberType => false;
+		readonly DiContainer _container;
+		readonly GameObjectCreationParameters _gameObjectBindInfo;
+
+		public EmptyGameObjectProvider(DiContainer container, GameObjectCreationParameters gameObjectBindInfo)
+		{
+			_gameObjectBindInfo = gameObjectBindInfo;
+			_container = container;
+		}
+
+		public Type GetInstanceType(InjectContext context)
+		{
+			return typeof(GameObject);
+		}
+
+		public void GetAllInstancesWithInjectSplit(
+			InjectContext context,
+			List<TypeValuePair> args,
+			out Action injectAction,
+			List<object> buffer)
+		{
+			Assert.IsEmpty(args);
+
+			injectAction = null;
+
+			var gameObj = _container.CreateEmptyGameObject(_gameObjectBindInfo, context);
+			buffer.Add(gameObj);
+		}
+	}
+}
+
+#endif
