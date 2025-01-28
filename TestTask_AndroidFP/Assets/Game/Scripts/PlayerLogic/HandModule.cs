@@ -14,6 +14,8 @@ namespace Game.Scripts.PlayerLogic
 		private HandInteraction _handInteraction;
 		[SerializeField]
 		private LayerMask _interactiveLayer;
+		[SerializeField]
+		private float _grabDistance = 3f;
 		
 		[Inject]
 		private LevelItemRootProvider _rootProvider;
@@ -21,6 +23,7 @@ namespace Game.Scripts.PlayerLogic
 		private CollectibleItem CurrentItem { get; set; }
 		private bool HasItem => CurrentItem != null;
 		private Tweener _tween;
+		
 
 		private void Update()
 		{
@@ -78,9 +81,10 @@ namespace Game.Scripts.PlayerLogic
 		{
 			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+			_grabDistance = 3;
 			if (!Physics.Raycast(ray,
 					out var hit,
-					3,
+					_grabDistance,
 					_interactiveLayer))
 				return;
 
