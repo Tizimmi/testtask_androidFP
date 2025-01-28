@@ -8,6 +8,8 @@ namespace Game.Scripts.PlayerLogic
 {
 	public class HandModule : MonoBehaviour
 	{
+		private CollectibleItem CurrentItem { get; set; }
+		private bool HasItem => CurrentItem != null;
 		[SerializeField]
 		private Transform _root;
 		[SerializeField]
@@ -15,15 +17,11 @@ namespace Game.Scripts.PlayerLogic
 		[SerializeField]
 		private LayerMask _interactiveLayer;
 		[SerializeField]
-		private float _grabDistance = 3f;
-		
+		private float _grabDistance;
+
 		[Inject]
 		private LevelItemRootProvider _rootProvider;
-		
-		private CollectibleItem CurrentItem { get; set; }
-		private bool HasItem => CurrentItem != null;
 		private Tweener _tween;
-		
 
 		private void Update()
 		{

@@ -6,6 +6,7 @@ namespace Game.Scripts.PlayerLogic
 	[RequireComponent(typeof(CharacterController))]
 	public class PlayerController : MonoBehaviour
 	{
+		private const float Gravity = -9.81f;
 		[SerializeField]
 		private InputActionReference _moveAction;
 		[SerializeField]
@@ -18,8 +19,6 @@ namespace Game.Scripts.PlayerLogic
 		private CharacterController _controller;
 		private float _currentXRotation;
 		private Vector3 _velocity;
-		
-		private const float Gravity = -9.81f;
 
 		private void Start()
 		{

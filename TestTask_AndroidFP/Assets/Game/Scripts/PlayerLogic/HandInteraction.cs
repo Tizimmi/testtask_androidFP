@@ -5,10 +5,9 @@ namespace Game.Scripts.PlayerLogic
 {
 	public class HandInteraction : MonoBehaviour
 	{
+		public event Action OnClick;
 		[SerializeField]
 		private Collider _collider;
-		
-		public event Action OnClick;
 
 		public void ClickHandler()
 		{

@@ -8,7 +8,7 @@ namespace Game.Scripts.Global
 		{
 			_gameUI = gameUI;
 		}
-		
+
 		public void GameOver()
 		{
 			_gameUI.SetText("CONGRATULATIONS! YOU HAVE WON THE GAME!");
